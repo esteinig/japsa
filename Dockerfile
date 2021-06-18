@@ -1,4 +1,5 @@
-FROM maven:openjdk-8-slim
+FROM maven:3.8-openjdk-8-slim
+
 
 LABEL name="japsa"
 LABEL branch="coverage"

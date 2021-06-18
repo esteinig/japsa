@@ -1,6 +1,6 @@
 FROM maven:3.8.1-openjdk-11
 
-RUN apt-get update && apt-get install -y wget git curl build-essential
+RUN apt-get update && apt-get install -y wget git curl
 
 RUN mkdir -p /src /root/.m2/repository 
 

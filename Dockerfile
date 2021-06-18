@@ -25,4 +25,3 @@ RUN mvn clean package install -DskipTests=true
 
 RUN ln -s /src/japsa/target/japsacov-${JAPSACOV_VERSION}.jar /usr/bin/japsacov.jar
 RUN echo 'alias jcov="java -cp /usr/bin/japsacov.jar"' >> ~/.bashrc
-

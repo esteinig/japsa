@@ -25,4 +25,3 @@ RUN bash install_mvn.sh
 
 RUN mkdir /data
 
-ENTRYPOINT ["/bin/sh"]

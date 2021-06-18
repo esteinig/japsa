@@ -22,3 +22,5 @@ RUN git clone https://github.com/esteinig/japsa
 RUN cd japsa && bash install_mvn.sh && 
 
 RUN mkdir /data
+
+ENTRYPOINT ["/bin/sh", "-c"]

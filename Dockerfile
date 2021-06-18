@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt-get install -y wget git curl build-essential maven default-jre
 
 ENV HOME="/home"
-RUN mkdir /src /home/.m2/repository 
+RUN mkdir -p /src /home/.m2/repository 
 
 WORKDIR /src
 RUN git clone https://github.com/esteinig/japsa && cd japsa/ && git checkout coverage

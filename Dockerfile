@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:11-jdk
 
 ARG MAVEN_VERSION=3.8.1
 ARG USER_HOME_DIR="/root"
@@ -14,3 +14,9 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+
+RUN mkdir /src
+WORKDIR /src
+
+RUN git clone https://github.com/esteinig/japsa && cd japsa
+RUN bash install_mvn.sh

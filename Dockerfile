@@ -18,5 +18,5 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 RUN mkdir /src
 WORKDIR /src
 
-RUN git clone https://github.com/esteinig/japsa && cd japsa
-RUN bash install_mvn.sh
+RUN git clone https://github.com/esteinig/japsa 
+RUN cd japsa && bash install_mvn.sh 

@@ -1,7 +1,6 @@
-FROM ubuntu:latest
-ENV DEBIAN_FRONTEND="noninteractive"
+FROM maven:3.8.1-adoptopenjdk-11
 
-RUN apt-get update && apt-get install -y wget git curl build-essential maven default-jre
+RUN apt-get update && apt-get install -y wget git curl build-essential
 
 ENV HOME="/home"
 RUN mkdir -p /src /home/.m2/repository 

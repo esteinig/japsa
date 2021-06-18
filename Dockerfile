@@ -21,7 +21,7 @@ RUN git clone https://github.com/esteinig/japsa
 
 WORKDIR /src/japsa
 RUN bash install_mvn.sh 
-RUN mvn clean package install -DskipTests=true
+# RUN mvn clean package install -DskipTests=true
 
 RUN mkdir /data
 

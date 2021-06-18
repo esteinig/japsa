@@ -19,4 +19,6 @@ RUN mkdir /src
 WORKDIR /src
 
 RUN git clone https://github.com/esteinig/japsa 
-RUN cd japsa && bash install_mvn.sh 
+RUN cd japsa && bash install_mvn.sh && 
+
+RUN mkdir /data

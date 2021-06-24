@@ -118,7 +118,7 @@ static boolean buildConsensus = false;// this re-runs analysis and builds consen
 		addString("mm2_path", "/sw/minimap2/current/minimap2",  "minimap2 path", false);
 		addString("abpoa_path", "/sw/abpoa/current/abpoa",  "abpoa path", false);
 
-		addString("readList", null,  "file with reads to include", false);
+		addString("listReads", null,  "file with reads to include", false);
 		addInt("maxReads",Integer.MAX_VALUE, "max reads to process", false );
 		addInt("minCoverage",2, "minimum coverage from consensus file", false );
 		addInt("minLength",500, "minimum length from consensus file", false );
@@ -302,7 +302,7 @@ static boolean buildConsensus = false;// this re-runs analysis and builds consen
 		if(bamFile==null && fastqFile==null) throw new RuntimeException("must define fastqFile or bam file");
 		String dbPath = cmdLine.getStringVal("dbPath");
 		String[] dbs =cmdLine.getStringVal("dbs")==null ? new String[] {null}:  cmdLine.getStringVal("dbs").split(":");
-		String readList = cmdLine.getStringVal("readList");
+		String readList = cmdLine.getStringVal("listRead");
 		final String speciesFile=cmdLine.getStringVal("speciesFile");
 		List<File> out_fastq = new ArrayList<File>();
 		String exclfile = cmdLine.getStringVal("excludeFile");

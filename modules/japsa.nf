@@ -16,9 +16,9 @@ process JAPSACoverageSpecies {
     script:
 
     """
-    java -Xmx$task.xmx -cp /usr/local/bin/japsacov-1.9.5e.jar \
+    java -Xmx$task.memory -cp /usr/local/bin/japsacov-1.9.5e.jar \
         --resdir=${id}_results --output=${id}.dat --fastqFile=$fastq \
-        --dbpath=$params.db_path --dbs=$params.dbs --mm2_threads=$task.threads \
+        --dbpath=$params.db_path --dbs=$params.dbs --mm2_threads=$task.cpus \
         --qual=0 --fail_thresh=7 --time=0 --log=false --mm2_path=minimap2 --minCount=4 \
         --deleteUnmapped=true --writeSep=[a-z] --alignedOnly=true \
         --minCoverage=4 --minLength=1000 --reduceToSpecies=false --buildConsensus=true

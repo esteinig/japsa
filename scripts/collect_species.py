@@ -40,5 +40,5 @@ for data in outdir.glob("*.dat"):
     with data.open("r") as infile, (outdir / "results.tsv").open("a") as outfile:
         for line in infile:
             outfile.write(line)
-
+        outfile.write("\n")  # sectioned output for excel
 

@@ -20,12 +20,11 @@ header = None
 lines = []
 for f in Path(results).rglob(f"*.dat"):
     if f.stem == sample:
-        print(f"Found database result file {f} in directory: {f.parent.name}")
+        print(f"Found database result file {f.name} in directory: {f.parent.name}")
         if f.parent.name.startswith(sample):
             db_name = f.parent.parent.name
         else:
             db_name = f.parent.name
-
 
         db = db_name.lstrip("unmapped.fq.gz.").rstrip(".jST")
 
@@ -34,7 +33,7 @@ for f in Path(results).rglob(f"*.dat"):
         with f.open("r") as data_file:
             for line in data_file:
                 if header is None:
-                    header = line.rstrip() + "\tDatabase\n"
+                    header = line.strip() + "\tDatabase\n"
                 else:
                     lines.append(line.strip() + f"\t{db}\n")
 

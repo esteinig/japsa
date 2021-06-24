@@ -17,7 +17,8 @@ outdir = sys.argv[3]
 
 print(f"Collecting output files for sample {sample} in {results} into: {outdir}")
 
-Path(outdir).mkdir(parents=True, exist_ok=True)
+outdir = Path(outdir)
+outdir.mkdir(parents=True, exist_ok=True)
 
 header = None
 lines = []

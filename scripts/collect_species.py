@@ -22,16 +22,20 @@ print(f"Collecting output files for sample {sample} in {result_path} into: {outp
 header = None
 for f in result_path.rglob(f"*.dat"):
     if f.stem == sample:
-        print(f"Found database result file: {f}")
+        print(f"Found database result file {f} in directory: {f.parent.name}")
         if f.parent.name.startswith(sample):
             db_name = f.parent.parent.name
         else:
             db_name = f.parent.name
 
+
         db = db_name.lstrip("unmapped.fq.gz").rstrip(".jST")
+
+        print(f"Database name {db} inferred from directory: {db_name}")
 
         with f.open("r") as data_file, f.open("a") as out_file:
             for line in data_file:
+                print(line)
                 if header is None:
                     # First line is header
                     out_file.write(line.strip() + f"\tDatabase\n")

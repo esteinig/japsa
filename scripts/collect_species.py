@@ -17,6 +17,8 @@ output = sys.argv[3]
 result_path = Path(results)
 output_file = Path(output)
 
+print(f"Collecting output files for sample {sample} in {result_path} into: {output_file}")
+
 header = None
 for f in result_path.glob(f"**/{sample}.dat"):
     if f.parent.name.startswith(sample):

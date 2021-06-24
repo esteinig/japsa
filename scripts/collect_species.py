@@ -13,12 +13,11 @@ from pathlib import Path
 
 sample = sys.argv[1]
 results = sys.argv[2]
-outdir = sys.argv[3]
+outfile = sys.argv[3]
 
-print(f"Collecting output files for sample {sample} in {results} into: {outdir}")
+print(f"Collecting output files for sample {sample} in {results} into: {outfile}")
 
-outdir = Path(outdir)
-outdir.mkdir(parents=True, exist_ok=True)
+outfile = Path(outfile)
 
 header = None
 lines = []
@@ -34,7 +33,16 @@ for f in Path(results).rglob(f"*.dat"):
 
         print(f"Database name {db} inferred from directory: {db_name}")
 
-        copy(str(f), f"{outdir}/{db}.dat")
-        
+        with f.open() as infile:
+            for line in infile:
+                if header is None:
+                    header = line.strip() + "\tDatabase\n"
+                else:
+                    lines.append(line.strip() + f"\t{db}\n")
+
+with outfile.open("w") as out:
+    out.write(header)
+    for line in lines:
+        out.write(line)
 
 

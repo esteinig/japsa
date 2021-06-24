@@ -8,13 +8,16 @@ Usage: python scripts/collect_species.py <sample_id> <result_dir> <outfile>
 
 import sys
 
+from shutil import copy
 from pathlib import Path
 
 sample = sys.argv[1]
 results = sys.argv[2]
-output = sys.argv[3]
+outdir = sys.argv[3]
 
-print(f"Collecting output files for sample {sample} in {results} into: {output}")
+print(f"Collecting output files for sample {sample} in {results} into: {outdir}")
+
+Path(outdir).mkdir(parents=True, exist_ok=True)
 
 header = None
 lines = []
@@ -30,14 +33,7 @@ for f in Path(results).rglob(f"*.dat"):
 
         print(f"Database name {db} inferred from directory: {db_name}")
 
-        with f.open("r") as data_file:
-            for line in data_file:
-                if header is None:
-                    header = line.strip() + "\tDatabase\n"
-                else:
-                    content = line.strip() + f"\t{db}\n"
-                    lines.append(content)
-                    print(content)
-                    
+        copy(str(f), f"{outdir}/{db}.dat")
+        
 
 

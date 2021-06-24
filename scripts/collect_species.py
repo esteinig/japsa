@@ -42,6 +42,6 @@ for data in outdir.glob("*.dat"):
             if i == 0:
                 outfile.write("Database\t" + line)
             else:
-                outfile.write(f"{db}\t" + line)
+                outfile.write(f"{data.stem}\t" + line)
         outfile.write("\n\n")  # sectioned output for excel
 

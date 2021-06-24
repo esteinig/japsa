@@ -33,7 +33,7 @@ def speciesMessage() {
     """.stripIndent()
 }
 
-include { JAPSACoverageSpecies } from './modules/sketchy'
+include { JAPSACoverageSpecies } from './modules/japsa'
 
 workflow {
 

@@ -14,13 +14,11 @@ sample = sys.argv[1]
 results = sys.argv[2]
 output = sys.argv[3]
 
-result_path = Path(results)
-output_file = Path(output)
-
-print(f"Collecting output files for sample {sample} in {result_path} into: {output_file}")
+print(f"Collecting output files for sample {sample} in {results} into: {output_file}")
 
 header = None
-for f in result_path.rglob(f"*.dat"):
+lines = []
+for f in Path(results).rglob(f"*.dat"):
     if f.stem == sample:
         print(f"Found database result file {f} in directory: {f.parent.name}")
         if f.parent.name.startswith(sample):
@@ -29,20 +27,20 @@ for f in result_path.rglob(f"*.dat"):
             db_name = f.parent.name
 
 
-        db = db_name.lstrip("unmapped.fq.gz").rstrip(".jST")
+        db = db_name.lstrip("unmapped.fq.gz.").rstrip(".jST")
 
         print(f"Database name {db} inferred from directory: {db_name}")
 
-        with f.open("r") as data_file, f.open("a") as out_file:
+        with f.open("r") as data_file:
             for line in data_file:
-                print(line)
                 if header is None:
-                    # First line is header
-                    out_file.write(line.strip() + f"\tDatabase\n")
-                    header = line
+                    header = line.rstrip() + "\tDatabase\n"
                 else:
-                    out_file.write(line.strip() + f"\t{db}\n")
-        
+                    lines.append(line.strip() + f"\t{db}\n")
 
+with Path(output).open("w") as out:
+    out.write(header)
+    for line in lines:
+        out.write(line)
 
 

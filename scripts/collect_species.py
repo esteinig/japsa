@@ -30,7 +30,7 @@ for f in Path(results).rglob(f"*.dat"):
         else:
             db_name = f.parent.name
 
-        db = db_name.lstrip("unmapped.fq.gz.").rstrip(".jST")
+        db = db_name.replace("unmapped.fq.gz.", "").replace(".jST", "")
 
         print(f"Database name {db} inferred from directory: {db_name}")
 

@@ -38,7 +38,10 @@ for f in Path(results).rglob(f"*.dat"):
 
 for data in outdir.glob("*.dat"):
     with data.open("r") as infile, (outdir / "results.tsv").open("a") as outfile:
-        for line in infile:
-            outfile.write(line)
+        for i, line in enumerate(infile):
+            if i == 0:
+                outfile.write("Database\t" + line)
+            else:
+                outfile.write(f"{db}\t" + line)
         outfile.write("\n\n")  # sectioned output for excel
 

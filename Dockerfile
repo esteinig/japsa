@@ -1,8 +1,6 @@
 FROM ubuntu:18.04
 
-ARG MINICONDA_VERSION=latest
-
-RUN apt-get update && apt-get install -y wget git curl build-essential openjdk-11
+RUN apt-get update && apt-get install -y openjdk-11
 
 COPY bin/japsacov-1.9.5e.jar /usr/local/bin
 

@@ -37,8 +37,9 @@ for f in Path(results).rglob(f"*.dat"):
         copy(str(f), f"{outdir}/{db}.dat")
 
 for data in outdir.glob("*.dat"):
-    with data.open("r") as infile, (outdir / "results.tsv").open("w") as outfile:
-        for line in infile:
-            outfile.write(line)
+    with data.open("r") as infile:
+        with (outdir / "results.tsv").open("a") as outfile:
+            for line in infile:
+                outfile.write(line)
 
 

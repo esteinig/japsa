@@ -35,11 +35,9 @@ for f in Path(results).rglob(f"*.dat"):
                 if header is None:
                     header = line.strip() + "\tDatabase\n"
                 else:
-                    lines.append(line.strip() + f"\t{db}\n")
-
-with Path(output).open("w") as out:
-    out.write(header)
-    for line in lines:
-        out.write(line)
+                    content = line.strip() + f"\t{db}\n"
+                    lines.append(content)
+                    print(content)
+                    
 
 

@@ -14,7 +14,7 @@ sample = sys.argv[1]
 results = sys.argv[2]
 output = sys.argv[3]
 
-print(f"Collecting output files for sample {sample} in {results} into: {output_file}")
+print(f"Collecting output files for sample {sample} in {results} into: {output}")
 
 header = None
 lines = []

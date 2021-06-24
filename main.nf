@@ -17,6 +17,8 @@ if (params.db_path == "") {
     System.exit(0)
 }
 
+version = "1.9.5e"
+
 def speciesMessage() {
 
     log.info"""

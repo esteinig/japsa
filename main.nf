@@ -9,8 +9,9 @@ params.outdir = "jcov_species"
 params.module = "species"
 params.fastq = "*.fastq"
 params.db_path = ""
-params.dbs = "Human:plasmids:Bacteria:archaea_2019Feb:viral_2019Jan:fungi_2019feb:invertebrate_2019Feb:protozoa_2019Feb"
-params.blast_db = "/Data/Blast/nt/nt"
+params.blast_db = ""
+params.dbs = ["Human", "plasmids", "Bacteria", "archaea_2019Feb", "viral_2019Jan", "fungi_2019feb", "invertebrate_2019Feb", "protozoa_2019Feb"]
+
 
 if (params.db_path == "") {
     println("Database path needs to be specified")
@@ -41,7 +42,8 @@ workflow {
 
     if (params.module == "species"){
         speciesMessage()
-        channel.fromPath("${params.fastq}", type: 'file').map { tuple(it.simpleName, it) } | JAPSACoverageSpecies
+        channel.fromPath("${params.fastq}", type: 'file').map { tuple(it.simpleName, it) } 
+        JAPSACoverageSpecies(ont, dbs)
     } 
 
     if (params.module == 'resistance') {

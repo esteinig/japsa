@@ -8,9 +8,9 @@ nextflow.enable.dsl=2
 params.outdir = "jcov_species"
 params.module = "species"
 params.fastq = "*.fastq"
-params.db_path = ""                               // must be actual path
+params.db_path = ""
 params.dbs = "Human:plasmids:Bacteria:archaea_2019Feb:viral_2019Jan:fungi_2019feb:invertebrate_2019Feb:protozoa_2019Feb"
-
+params.blast_db = "/Data/Blast/nt/nt"
 
 if (params.db_path == "") {
     println("Database path needs to be specified")
